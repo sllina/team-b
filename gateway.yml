@@ -1,0 +1,72 @@
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 20000
+
+ribbon:
+  ReadTimeout: 20000
+  ConnectTimeout: 20000
+    
+  
+
+zuul:
+  ignoredServices: '*'
+  host:
+    connect-timeout-millis: 20000
+    socket-timeout-millis: 20000
+
+  routes:
+    p-auth:
+      path: team-b/auth/**
+      serviceId: p-auth
+      stripPrefix: false
+    p-personal:
+      path: team-b/personal/**
+      serviceId: personal
+      stripPrefix: false
+    p-enterprise:
+      path: team-b/enterprise/**
+      serviceId: p-enterprise
+      stripPrefix: false
+    s-client:
+      path: team-b/client/**
+      serviceId: s-client
+      stripPrefix: false
+    s-order:
+      path: /order/**
+      url: http://192.168.0.10:4000/order/swagger-ui.html
+      stripPrefix: true
+    s-bom:
+      path: /bom/**
+      serviceId: s-bom
+      stripPrefix: false
+    s-file:
+      path: /file/**
+      serviceId: s-file
+      stripPrefix: false
+    s-salegoods:
+      path: /salegoods/**
+      serviceId: s-salegoods
+      stripPrefix: false
+    s-orgemp:
+      path: /orgemp/**
+      serviceId: s-orgemp
+      stripPrefix: false
+    s-rolefun:
+      path: /rolefun/**
+      serviceId: s-rolefun
+      stripPrefix: false
+    s-process:
+      path: /process/**
+      serviceId: s-process
+      stripPrefix: false
+    s-classman:
+      path: /classman/**
+      serviceId: s-classman
+      stripPrefix: false
+     
+server:
+  port: 4000
